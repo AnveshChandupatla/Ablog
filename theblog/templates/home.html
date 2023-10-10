@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- <ul>
+    {% for post in object_list %}
+    <li> <a href="{% url 'article-details' post.pk %}"> {{post.title}}</a> - {{post.author.first_name}}
+        <br /> {{post.body | slice:":0" | safe}}
+        {{post.snippet}}
+    </li>
+    {% endfor %}
+</ul> -->
+<div class="container">
+    <h3 class="text-center" style="color: azure;">Blogs</h3><br>
+    <div class="row row-cols-1 row-cols-md-3">
+        {% for post in object_list %}
+        <div class="col mb-4">
+            <div class="card h-100">
+                <img src="https://img.freepik.com/premium-vector/devops-agile-development-optimisation-concept-virtual-screen-software-engineering-software-development-practices-methodology-wireframe-hand-touching-digital-interface-vector-illustration_127544-2351.jpg?w=740" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h2 class="card-title"><a href="{% url 'article-details' post.pk %}">{{post.title}}</a></h2>
+                    <hr>
+                    <p class="card-text">{{post.body | slice:":10" | safe}}</p>
+                    
+                    <p>Posted by: <a href="{% url 'show_profile_page' user.profile.id %}">{{post.author}}</a></p>
+                    <p>Posted at: {{post.post_date}} </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

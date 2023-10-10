@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Create a New Profile{% endblock title %}
+{% block content %}
+{% comment %} {% if user.is_authenticated %} {% endcomment %}
+<h1 class="col-5" style="color: whitesmoke;">Create Profile</h1>
+<br />
+
+<div class="form-group col-10">
+    <form method="POST" enctype="multipart/form-data" style="color: whitesmoke;"> 
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-success"> Create Profile </button>
+        
+    </form>
+</div>
+{% comment %} {% else %}   
+    You are not authenticated to add post
+{% endif %} {% endcomment %}
+{% endblock %}
+ 
+
+

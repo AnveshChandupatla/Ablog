@@ -1,0 +1,9 @@
+body{
+    background-image: url(../images/googlelogo);
+    background-repeat: no-repeat;
+    background-size:110%;
+}
+
+#gp{
+    width: 100%;
+}

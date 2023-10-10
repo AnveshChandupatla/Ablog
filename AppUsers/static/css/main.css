@@ -1,0 +1,21 @@
+body{
+    background-image: url(../images/SignUp2.jpg);
+    background-repeat: no-repeat;
+    background-size:110%;
+}
+
+.img-thumbnail {
+    padding: 1.25rem;
+    /* background-color: #fff; */
+    /* border: 1px solid var(--bs-border-color); */
+    border-radius: 35.375rem;
+    max-width: fit-content;
+    height: auto;
+}
+p{
+    color: black;
+    font-size: large;
+}
+#gp{
+    width: 100%;
+}
