@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
+from AppUsers.templates import *
 from .forms import PostForm, EditForm
 from django.urls import reverse_lazy
 # from django.http import HttpResponseRedirect
@@ -16,6 +17,8 @@ class TutorialHome(ListView):
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
+    # template_name = 'login.html'
+
     ordering = ['-id']
     # ordering = ['-post_date']
 

@@ -1,28 +1,89 @@
 {% comment %} {% extends "base.html" %} {% endcomment %}
 {% comment %} {% block title %}Login{% endblock title %} {% endcomment %}
-{% block content %}
-<h1 class="col-2" style="color: whitesmoke;">Login</h1>
-<br />
+{% comment %} {% block content %} {% endcomment %}
+<!-- <!DOCTYPE> -->
+<!DOCTYPE html>
+<html lang="en">
+<script>
 
-<div class="form-group col-5">
-    <form method="POST">
-        {% csrf_token %} 
-        <div class="form-group">
-            <input type="text" class="form-control" name='username' placeholder="Username">
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" name='password' placeholder="Password">
-            
-        </div>
-        <button class="btn btn-secondary"> Login </button>
-        <br>
-        <small id="emailHelp" class="form-text text-muted">Not a User? Register <a href="{% url 'register' %}"> Here</a></small>
+    function validate() {
+        var uname = document.getElementById("user");
+        var upass = document.getElementById("pwd");
+        if (uname.value == "") {
 
- 
-        
-        
-    </form>
-</div>
-{% endblock %}
+            alert("Username can't be null");
+            return false;
+        }
 
+        else if (upass.value == "") {
+            alert("Password can't be null");
+            return false;
+        }
+        else
+            return true;
+    }
 
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" , content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body
+    style="display: flex; justify-content: center; align-items: center;min-height: 90vh; margin: 0; padding: 0;box-sizing: border-box; font-family: 'Poppins',sans-serif; background-color: cadetblue; background: url('https://t3.ftcdn.net/jpg/06/09/92/84/240_F_609928464_kmrCJHWwqcAmZYIPoD5e6TOa4wvhAxhr.jpg') no-repeat; background-position: center; background-size: cover; ">
+
+    <!-- <div class="full-page"> -->
+    <!-- <div class="navbar" style= "align-items: end; padding: 20px;padding-top: 50px; padding-left: 50px; padding-right: 30px;">
+        <nav style="flex: 1;">
+            <ul id="MenuItems" style="display: inline-block; list-style: none;">
+                <li style="display: inline-block;"><a href="">Home</a></li>
+                <li><a href="">Login</a></li>
+            </ul>
+        </nav>
+    </div> -->
+    <!-- </div> -->
+    <div class="form-group"
+        style="background: rgba(0, 0, 0, 0.3); overflow: hidden; width: 420px; padding: 25px 30px; border-radius: 10px; font-family: 'Poppins', sans-serif ">
+        <form method="POST" style="color: whitesmoke;">
+            {% csrf_token %}
+            <h1 style="text-align: center;">Login</h1>
+            <div class="form-group">
+                <i class='bx bxs-user'></i>
+                <label><input id="user"
+                        style="background-color: salmon;height:30px;font-size:13pt; border: none; border: 2px solid rgba(255, 255, 255, .2); outline: none;background: transparent; border-radius:40px; width: 90%;"
+                        type="text" name='username' placeholder="  Username"></label>
+
+            </div>
+            <br>
+            <div class="form-group">
+                <i class='bx bxs-lock-alt'></i>
+                <label style="transform: translateY(-50%);top: 50%;left: 5px;"><input id="pwd"
+                        style="background-color: salmon;  height:30px;font-size:13pt;  border: 2px solid rgba(255, 255, 255, .2); outline: none;background: transparent; border-radius:40px;width: 90%;"
+                        type="password" class="form-control" name='password' placeholder="  Password"></label>
+
+            </div>
+            <br><br>
+            <div class="remember-forgot"
+                style="justify-content: space-between; margin: -15px 0 15px; accent-color: white;">
+                <label style="cursor: pointer;"><input type="checkbox" style="font-size: 13px;"> Remember me</label>
+                <a href="#" style="color: white; font-size: 13px; margin: 20%;">Forgot Password?</a>
+            </div>
+            <button onclick="return validate();" class=" btn btn-primary"
+                style="margin: 5%;height:30px;font-size:13pt; border: none; border: 2px solid rgba(255, 255, 255, .2); outline: none;background: white; border-radius:40px;width: 90%; cursor: pointer; font-weight: 500;">
+                Login </button>
+            <br>
+            <p style="font-size: small;" id="register-link" class="form-text text-muted">Don't have an account? <a
+                    style="color: white; font-size: 13px;margin: 20px 0px 15px;" href="{% url 'register' %}">
+                    Register</a></p>
+
+        </form>
+    </div>
+</body>
+
+</html>
+
+{% comment %} {% endblock %} {% endcomment %}
