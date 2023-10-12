@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<h2 class='col-3' style="color: whitesmoke;">User Profile</h2>
+<br>
+
+<div class=" card mb-3 col-10">
+    <div class="row no-gutters">
+        <div class="col-md-2">
+            {% if page_user.profile_pic %}
+            <img src="{{page_user.profile_pic.url}}" width=150 height=150>
+
+            {% else %}
+            <img src="{% static 'theblog/images/defaultprofile.png' %}" width=150 height=150>
+
+            {% endif %}
+        </div>
+        <div class="col-md" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsqcleca_7WkG6-awRdZK2L-tG7gJ8359aGg&usqp=CAU'); background-size: auto">
+            <div class="card-body">
+                <h5 class="card-title" style="color:white;">{{page_user.user.first_name}}</h5>
+                <p class="small text-muted">
+
+                    {% if page_user.website_url %}
+                    <a href="{{ page_user.website_url }}">
+                        <img src="{{page_user.website_icon.url}}" width=20 height=20>
+                    </a>
+                    {% endif %}
+
+                    {% if page_user.fb_url %}
+                    <a href="{{ page_user.fb_url }}">
+                        <img src="{{page_user.facebook_icon.url}}" width=20 height=20></a>
+                    {% endif %}
+
+                    {% if page_user.twitter_url %}
+                    <a href="{{ page_user.twitter_url }}">
+                        <img src="{{page_user.twitter_icon.url}}" width=20 height=20></a></a>
+                    {% endif %}
+
+                    {% if page_user.instagram_url %}
+                    <a href="{{ page_user.instagram_url }}">
+                        <img src="{{page_user.instagram_icon.url}}" width=20 height=20></a>
+
+                    {% endif %}
+
+                </p>
+                <p>
+                <p class="card-text">{{ page_user.bio }}</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ul>
+
+</ul>
+
+
+{% endblock %}

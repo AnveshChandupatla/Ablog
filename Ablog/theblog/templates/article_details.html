@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{post.title}}{% endblock title %}
+{% block content %}
+<div class="container align-content-lg-start" style="color: whitesmoke;">
+    {% comment %} current user: {{}} {% endcomment %}
+    {% comment %} Post Author: {{post.author.first_name}} {% endcomment %}
+    <h1>{{post.title}} </h1>
+    <small>By: {{post.author.first_name}} - {{post.post_date}} </small>
+    <hr>
+
+    {% if post.header_image %}
+    <img src="{{ post.header_image.url }}">
+    {% endif %}
+    <br /><br />
+    {{post.body | safe}}
+</div>
+<br /><br />
+<div class="container align-content-lg-start">
+    {% if user.is_authenticated %}
+        {% comment %} {{% if user.id == post.author.id %}} {% endcomment %}
+        <a href="{% url 'edit_post' post.pk %}"><button class="btn btn-success btn-sm" type="success"> Edit Post
+            </button></a>
+        <a href="{% url 'delete_post' post.pk %}"><button class="btn btn-success btn-sm" type="success"> Delete Post
+            </button></a>
+        <a class="btn btn-success btn-sm" href="{% url 'home' %}"> Back </a>
+        {% comment %} {% endif %} {% endcomment %}
+    {% endif %}
+</div>
+<br />
+<div class="container" style="color: whitesmoke;">
+    <h2 class="container"> Comments..</h2>
+    {% if not post.comments.all %}
+    No comments yet.. click<a href="#"> here
+    </a> to add comment
+    {% else %}
+    {% for comment in post.comments.all %}
+    <strong>
+        {{comment.name}} - {{comment.date_added}}
+    </strong>
+    <br>
+    {{comment.body}}
+    <br>
+    {% endfor %}
+    {% endif %}
+    <hr>
+</div>
+
+<br><br>
+
+
+<div class="container card col-md-2 align-content-lg-start" style="max-width: 900px; align-content: baseline;">
+    <div class="row no-gutters">
+        <div class="col-md-2">
+            {% if post.author.profile.profile_pic %}
+            <img src="{{post.author.profile.profile_pic.url}}" width=150 height=150>
+
+            {% else %}
+            <img src="{% static 'theblog/images/defaultprofile.png' %}" width=150 height=150>
+
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+                <h5 class="card-title">{{post.author.first_name}}</h5>
+                <p class="small text-muted">
+
+                    <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile Page</a> |
+
+                    {% if post.author.profile.website_url %}
+
+                    <a href="{{ post.author.profile.website_url }}">
+                        <img src="{{post.author.profile.website_icon.url}}" width=20 height=20>
+                    </a> |
+                    {% endif %}
+
+                    {% if post.author.profile.fb_url %}
+                    <a href="{{ post.author.profile.fb_url }}">
+                        <img src="{{post.author.profile.facebook_icon.url}}" width=20 height=20></a> |
+                    {% endif %}
+
+                    {% if post.author.profile.twitter_url %}
+                    <a href="{{ post.author.profile.twitter_url }}">
+                        <img src="{{post.author.profile.twitter_icon.url}}" width=20 height=20></a></a> |
+                    {% endif %}
+
+                    {% if post.author.profile.instagram_url %}
+                    <a href="{{ post.author.profile.instagram_url }}">
+                        <img src="{{post.author.profile.instagram_icon.url}}" width=20 height=20></a>
+
+                    {% endif %}
+
+                </p>
+                <p class="card-text">{{ post.author.profile.bio }}</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

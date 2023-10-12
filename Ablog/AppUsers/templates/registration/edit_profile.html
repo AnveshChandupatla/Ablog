@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Edit Profile Page{% endblock title %}
+{% block content %}
+<h1 class="col-5">Edit Profile</h1>
+<br/>
+{{ user.profile.bio }}
+<br/><br/>
+
+<div class="form-group col-5">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-secondary"> Save Profile </button>
+        
+    </form>
+</div>
+{% endblock %}
+
